@@ -28,7 +28,11 @@ public class Main {
             System.err.println(e.getMessage());
         }
 
-
+        //get all email
+        List<String> emails = getAllEmails(contacts);
+        for (String email : emails) {
+            System.out.println(email);
+        }
 
 
     }
@@ -88,7 +92,14 @@ public class Main {
             throw new ContactNotFoundException("Contact not found ");
         }
 
-
+        //get all email
+        static List<String> getAllEmails(List<Contact> contacts){
+            List<String> emails = new ArrayList<>();
+            for (Contact contact : contacts) {
+                emails.add(contact.getEmail());
+            }
+            return emails;
+        }
 
 
 }
