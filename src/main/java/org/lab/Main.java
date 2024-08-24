@@ -20,22 +20,30 @@ public class Main {
             System.out.println(contact);
         }
 
+        //search a contact by email
+        try{
+            Contact searchContact = searchContact(contacts, "molil@mail.com", 894567890);
+        }
+        catch (ContactNotFoundException e){
+            System.err.println(e.getMessage());
+        }
+
 
 
 
     }
 
-    private static void sortByName(List<Contact> contacts) {
-        Collections.sort(contacts,new Comparator<Contact>(){
+        static void sortByName(List<Contact> contacts) {
+            Collections.sort(contacts,new Comparator<Contact>(){
 
-            @Override
-            public int compare(Contact o1, Contact o2){
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
-    }
+                @Override
+                public int compare(Contact o1, Contact o2){
+                    return o1.getName().compareTo(o2.getName());
+                }
+            });
+        }
 
-    static List<Contact> buildContactList() {
+       static List<Contact> buildContactList() {
         // Create a new Contact object
         List<Contact> contact = new ArrayList<>();
         contact.add(new Contact("Doe", "John", "ledem@mail.fr", 1234567890));
@@ -71,17 +79,14 @@ public class Main {
 
          //search a contact by email or name
 
-    static Contact searchContact(List<Contact> contacts, String email) {
-        if (contacts == null) {
-            throw new IllegalArgumentException("Contact list cannot be null");
-        }
-        for (Contact contact : contacts) {
-            if (contact.getEmail().equals(email)) {
-                return contact;
+        static Contact searchContact(List<Contact> contacts, String email, long telefon) {
+            for (Contact contact : contacts) {
+                if (contact.getEmail().equals(email) || contact.getTelefon() == telefon) {
+                    return contact;
+                }
             }
+            throw new ContactNotFoundException("Contact not found ");
         }
-        throw new NoContactException("Contact not found");
-    }
 
 
 
