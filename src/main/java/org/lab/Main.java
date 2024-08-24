@@ -19,6 +19,7 @@ public class Main {
         for (Contact contact : contacts) {
             System.out.println(contact);
         }
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
         //search a contact by email
         try{
@@ -34,8 +35,20 @@ public class Main {
             System.out.println(email);
         }
 
+        //implement map with phone and  name
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        Map<String, String> phonesAndNames = getPhonesAndNames(contacts);
+        for (Map.Entry<String, String> entry : phonesAndNames.entrySet()) {
+            System.out.println( entry.getValue() + " : " + entry.getKey());
+        }
 
     }
+
+
+
+
+
+
 
         static void sortByName(List<Contact> contacts) {
             Collections.sort(contacts,new Comparator<Contact>(){
@@ -99,6 +112,15 @@ public class Main {
                 emails.add(contact.getEmail());
             }
             return emails;
+        }
+
+        //implement map with phone and  name
+        static Map<String, String> getPhonesAndNames(List<Contact> contacts) {
+            Map<String, String> phonesAndNames = new HashMap<>();
+            for (Contact contact : contacts) {
+                phonesAndNames.put(String.valueOf(contact.getTelefon()), contact.getName());
+            }
+            return phonesAndNames;
         }
 
 
